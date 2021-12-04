@@ -20,32 +20,34 @@
 
         <div class="row">
             <div class="search-bar col-12 col-md-4">
-                <div class="search">
+                <div class="search card">
                     <h2 class="city">Search for a City:</h2>
                     <form>
                         <label id="city-search" for="city-name"></label>
                         <input name="city-name" id="city-name" type="text">
-                        <button type="submit" class="search-btn d-block" id="city-btn">Search</button>
+                        <button type="submit" class="search-btn d-block btn-block" id="city-btn">Search</button>
                     </form>
                 </div>
                 <hr>
-                <div class="search-history">
+                <div class="search-history card">
                     <h2>City Search History</h2>
                 </div>
             </div>
 
             <section class="display col-12 col-md-8">
                 <div>
-                    <div class="current-weather">
+                    <div class="current-weather border border-info rounded">
                         <h2>CITY</h2>
                     </div>
                     <div class="five-day row">
                         <h2 class="five-header col-12">5-Day Forecast:</h2>
-                        <div class="day1 col-2">DAY1</div>
-                        <div class="day2 col-2">DAY1</div>
-                        <div class="day3 col-2">DAY1</div>
-                        <div class="day4 col-2">DAY1</div>
-                        <div class="day5 col-2">DAY1</div>
+                        <div class="card-deck">
+                            <div class="day1 card col-2 border border-info">DAY1</div>
+                            <div class="day2 card col-2 border border-info">DAY1</div>
+                            <div class="day3 card col-2 border border-info">DAY1</div>
+                            <div class="day4 card col-2 border border-info">DAY1</div>
+                            <div class="day5 card col-2 border border-info">DAY1</div>
+                        </div>
                     </div>
                 </div>
             </section>
