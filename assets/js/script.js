@@ -1,4 +1,4 @@
-var currentDate = $("#currentDay").text(moment().format("M, D, YYYY"));
+var currentDate = (moment().format("M, D, YYYY"));
 
 var formSubmitHandler = function(event) {
     event.preventDefault();
@@ -43,7 +43,7 @@ var getCityCoords = function(cityName, stateName, countryName) {
 
 var getCityWeather = function(city, state, lat, lon) {
 
-    $(".current-city").text(city + ", " + state + " " + currentDate);
+    $(".current-city").text(city + ", " + state + " " + "(" + currentDate + ")");
 
     var apiWeatherUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=d7c51260421f59d205477457b5c74ad2";
 
@@ -54,12 +54,18 @@ var getCityWeather = function(city, state, lat, lon) {
                 var icon = data.current.weather[0].icon;
                 var temp = data.current.temp;
                 var wind = data.current.wind_speed
-                var humidity = data.humidity
+                var humidity = data.current.humidity
                 var uvi = data.current.uvi
                 
+                console.log(icon);
+                console.log(temp);
+                console.log(wind);
+                console.log(humidity);
+                console.log(uvi);
+
                 displayCurrentWeather(icon, temp, wind, humidity, uvi)
 
-                displayFiveDay()
+                // displayFiveDay()
             })
         }
     })
@@ -67,6 +73,14 @@ var getCityWeather = function(city, state, lat, lon) {
 
 var displayCurrentWeather = function(icon, temp, wind, humidity, uvi) {
 
-}
+    var iconUrl = " http://openweathermap.org/img/wn/" + icon + "@2x.png"
+
+    $(".current-city").append("<img src=" + iconUrl + ">");
+
+    $("#temp").text("Temp: " + temp + "°F");
+    $("#wind").text("Wind: " + wind + " MPH");
+    $("#humidity").text("Humidity: " + humidity + " %");
+    $("#uv").text("UV Index: " + uvi);
+};
 
 $(".city-form").on("submit", formSubmitHandler); 
