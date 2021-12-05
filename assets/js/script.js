@@ -1,4 +1,4 @@
-
+var currentDate = $("#currentDay").text(moment().format("M, D, YYYY"));
 
 var formSubmitHandler = function(event) {
     event.preventDefault();
@@ -25,22 +25,48 @@ var formSubmitHandler = function(event) {
 };
   
 var getCityCoords = function(cityName, stateName, countryName) {
-    var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "," + stateName + "," + countryName + "&limit=1&appid=d7c51260421f59d205477457b5c74ad2"
+    var apiGeoUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "," + stateName + "," + countryName + "&limit=1&appid=d7c51260421f59d205477457b5c74ad2"
 
-    fetch(apiUrl).then(function(response) {
+    fetch(apiGeoUrl).then(function(response) {
         if(response.ok) {
             console.log(response);
             response.json().then(function(data) {
                 console.log(data);
-                //getCityWeather(data.name, data.lat, data.lon);
+                console.log(data[0].name);
+                console.log(data[0].lat);
+                console.log(data[0].lon);
+                getCityWeather(data[0].name, data[0].state, data[0].lat, data[0].lon);
             })
         }
     })
 }
 
-var getCityWeather = function(city, lat, lon) {
+var getCityWeather = function(city, state, lat, lon) {
 
+    $(".current-city").text(city + ", " + state + " " + currentDate);
+
+    var apiWeatherUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=d7c51260421f59d205477457b5c74ad2";
+
+    fetch(apiWeatherUrl).then(function(response){
+        if(response.ok) {
+            response.json().then(function(data) {
+                console.log(data);
+                var icon = data.current.weather[0].icon;
+                var temp = data.current.temp;
+                var wind = data.current.wind_speed
+                var humidity = data.humidity
+                var uvi = data.current.uvi
+                
+                displayCurrentWeather(icon, temp, wind, humidity, uvi)
+
+                displayFiveDay()
+            })
+        }
+    })
 }
 
+var displayCurrentWeather = function(icon, temp, wind, humidity, uvi) {
+
+}
 
 $(".city-form").on("submit", formSubmitHandler); 
