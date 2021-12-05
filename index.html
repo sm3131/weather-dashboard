@@ -21,32 +21,78 @@
         <div class="row">
             <div class="search-bar col-12 col-md-4">
                 <div class="search card">
-                    <h2 class="city">Search for a City:</h2>
-                    <form>
-                        <label id="city-search" for="city-name"></label>
-                        <input name="city-name" id="city-name" type="text">
-                        <button type="submit" class="search-btn d-block btn-block" id="city-btn">Search</button>
+                    <h2 class="city-header">Search for a City:</h2>
+                    <form class="city-form">
+                        <input id="city-name" type="text">
+                        <button type="submit" class="search-btn d-block btn-block btn-lg" id="city-btn">Search</button>
                     </form>
                 </div>
                 <hr>
                 <div class="search-history card">
-                    <h2>City Search History</h2>
+                    <h2 class="text-center">City Search History</h2>
+                    <ul class="history-cities"></ul>
                 </div>
             </div>
 
             <section class="display col-12 col-md-8">
                 <div>
                     <div class="current-weather border border-info rounded">
-                        <h2>CITY</h2>
+                        <h2 class="current-city">CITY</h2>
+                        <ul class="weather-stats">
+                            <li>EXAMPLE</li>
+                            <li>EXAMPLE</li>
+                            <li>EXAMPLE</li>
+                            <li>EXAMPLE</li>
+                        </ul>
                     </div>
                     <div class="five-day row">
                         <h2 class="five-header col-12">5-Day Forecast:</h2>
                         <div class="card-deck">
-                            <div class="day1 card col-2 border border-info">DAY1</div>
-                            <div class="day2 card col-2 border border-info">DAY1</div>
-                            <div class="day3 card col-2 border border-info">DAY1</div>
-                            <div class="day4 card col-2 border border-info">DAY1</div>
-                            <div class="day5 card col-2 border border-info">DAY1</div>
+                            <div class="day1 five-day-cards card col-2 border border-info">
+                                <h4 class="date">DATE</h4>
+                                <div class="weather-icon">pic</div>
+                                <ul class="w-stats">
+                                    <li>EXAMPLE</li>
+                                    <li>EXAMPLE</li>
+                                    <li>EXAMPLE</li>
+                                </ul>
+                            </div>
+                            <div class="day2 five-day-cards card col-2 border border-info">
+                                <h4 class="date">DATE</h4>
+                                <div class="weather-icon">pic</div>
+                                <ul class="w-stats">
+                                    <li>EXAMPLE</li>
+                                    <li>EXAMPLE</li>
+                                    <li>EXAMPLE</li>
+                                </ul>
+                            </div>
+                            <div class="day3 five-day-cards card col-2 border border-info">
+                                <h4 class="date">DATE</h4>
+                                <div class="weather-icon">pic</div>
+                                <ul class="w-stats">
+                                    <li>EXAMPLE</li>
+                                    <li>EXAMPLE</li>
+                                    <li>EXAMPLE</li>
+                                </ul>
+                            </div>
+                            <div class="day4 five-day-cards card col-2 border border-info">
+                                <h4 class="date">DATE</h4>
+                                <div class="weather-icon">pic</div>
+                                <ul class="w-stats">
+                                    <li>EXAMPLE</li>
+                                    <li>EXAMPLE</li>
+                                    <li>EXAMPLE</li>
+                                </ul>
+                            </div>
+                            <div class="day5 five-day-cards card col-2 border border-info">
+                                <h4 class="date">DATE</h4>
+                                <div class="weather-icon">pic</div>
+                                <ul class="w-stats">
+                                    <li>EXAMPLE</li>
+                                    <li>EXAMPLE</li>
+                                    <li>EXAMPLE</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -56,6 +102,8 @@
 
     </main>
 
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="assets/js/script.js"></script>
 </body>
 
 </html>
