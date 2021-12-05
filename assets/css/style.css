@@ -1,0 +1,50 @@
+.dashboard h1 {
+    background-image: linear-gradient(to right, blue, green, transparent);
+    color:whitesmoke;
+}
+
+.city-header {
+    background-image: linear-gradient(115deg, blue, transparent);
+    color:whitesmoke;
+}
+
+#city-name {
+    width:100%;
+    margin-bottom: 5px;
+    height: 45px;
+    font-size: 1.7rem;
+}
+
+.search-btn {
+    background-image: radial-gradient(blue 30%, transparent);
+    color:whitesmoke;
+    font-size: 1.2rem;
+}
+
+hr {
+    border-top: 3px solid rgba(0,0,0,.5)
+}
+
+.current-city {
+    margin-left:2px;
+    padding: 6px;
+}
+.weather-stats {
+    list-style: none;
+    margin-left:-29px;
+}
+
+.card-deck {
+    margin-left: 1px;
+}
+
+.five-day-cards {
+    background-color: steelblue;
+    width:250px;
+}
+
+.w-stats {
+    list-style:none;
+    margin-left:auto;
+    padding:4px;
+}
