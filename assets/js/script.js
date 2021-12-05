@@ -1,4 +1,4 @@
-var currentDate = (moment().format("M, D, YYYY"));
+var currentDate = (moment().format("M/D/YYYY"));
 
 var formSubmitHandler = function(event) {
     event.preventDefault();
@@ -56,7 +56,8 @@ var getCityWeather = function(city, state, lat, lon) {
                 var wind = data.current.wind_speed
                 var humidity = data.current.humidity
                 var uvi = data.current.uvi
-                
+                var daily = data.daily
+
                 console.log(icon);
                 console.log(temp);
                 console.log(wind);
@@ -65,7 +66,8 @@ var getCityWeather = function(city, state, lat, lon) {
 
                 displayCurrentWeather(icon, temp, wind, humidity, uvi)
 
-                // displayFiveDay()
+                getNewDate();
+                //displayFiveDay(daily);
             })
         }
     })
@@ -75,7 +77,7 @@ var displayCurrentWeather = function(icon, temp, wind, humidity, uvi) {
 
     var iconUrl = " http://openweathermap.org/img/wn/" + icon + "@2x.png"
 
-    $(".current-city").append("<img src=" + iconUrl + ">");
+    $(".current-city").append("<img class='icon-img' src=" + iconUrl + ">");
 
     $("#temp").text("Temp: " + temp + "°F");
     $("#wind").text("Wind: " + wind + " MPH");
@@ -83,4 +85,34 @@ var displayCurrentWeather = function(icon, temp, wind, humidity, uvi) {
     $("#uv").text("UV Index: " + uvi);
 };
 
+
+// var displayFiveDay = function(daily) {
+
+//     for (var i = 0; i < 5; i++) {
+
+//         getNewDate();
+//         $(".day" + i).append()
+//     }
+
+
+// }
+
+var getNewDate = function () {
+    for (var d = 1; d < 6; d++) {
+
+        var date = new Date();
+        date.setDate(date.getDate() + d);
+        
+        var newDate = date.toLocaleDateString();
+        
+        $(".date" + d).text(newDate);
+
+        //document.getElementById("demo" + d).innerHTML = newDate;
+    }
+    
+};
+
 $(".city-form").on("submit", formSubmitHandler); 
+
+
+
