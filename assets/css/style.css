@@ -8,12 +8,19 @@
     color:whitesmoke;
 }
 
-#city-name {
+.city-form input {
     width:100%;
     margin-bottom: 5px;
     height: 45px;
     font-size: 1.7rem;
 }
+
+/* #city-name {
+    width:100%;
+    margin-bottom: 5px;
+    height: 45px;
+    font-size: 1.7rem;
+} */
 
 .search-btn {
     background-image: radial-gradient(blue 30%, transparent);
