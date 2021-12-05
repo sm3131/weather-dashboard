@@ -12,7 +12,7 @@ var formSubmitHandler = function(event) {
 
     if(city && state && country) {
 
-        getCityWeather(city, state, country);
+        getCityCoords(city, state, country);
 
         //clear old content
         $("#city").val("");
@@ -24,24 +24,23 @@ var formSubmitHandler = function(event) {
     }
 };
   
-var getCityWeather = function(city) {
-    var apiUrl = 
+var getCityCoords = function(cityName, stateName, countryName) {
+    var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "," + stateName + "," + countryName + "&limit=1&appid=d7c51260421f59d205477457b5c74ad2"
 
     fetch(apiUrl).then(function(response) {
         if(response.ok) {
             console.log(response);
             response.json().then(function(data) {
                 console.log(data);
-                displayWeather(data, city);
+                //getCityWeather(data.name, data.lat, data.lon);
             })
         }
     })
 }
 
+var getCityWeather = function(city, lat, lon) {
 
-// var displayWeather = function (weather, citySearch) {
-
-// }
+}
 
 
 $(".city-form").on("submit", formSubmitHandler); 
