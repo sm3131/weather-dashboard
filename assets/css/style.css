@@ -58,6 +58,10 @@ hr {
     line-height: 2;
 }
 
+.five-cards {
+    margin-top: -25px;
+}
+
 .five-header {
     background-image: linear-gradient(to right, blue, blueviolet);
     margin-left: 10px;
@@ -74,18 +78,28 @@ hr {
 
 .five-day-cards h4 {
     color:white;
+    margin-top:5px;
+}
+
+.iconFive {
+    height: 50px;
 }
 
 .five-day-cards {
-    height: 140px;
     margin: 26px;
     padding-left:26px;
-    max-width:93.5%;
+    max-width:93.2%;
     background-image:linear-gradient(15deg, white, blue);
     color:navy;
     border: 2px solid skyblue;
     border-radius:5px;
     margin-bottom:0px
+}
+
+.w-stats {
+    color:cyan;
+    font-size: 18px;
+
 }
 
 .w-stats {

@@ -67,7 +67,7 @@ var getCityWeather = function(city, state, lat, lon) {
                 displayCurrentWeather(icon, temp, wind, humidity, uvi)
 
                 getNewDate();
-                //displayFiveDay(daily);
+                displayFiveDay(daily);
             })
         }
     })
@@ -75,7 +75,7 @@ var getCityWeather = function(city, state, lat, lon) {
 
 var displayCurrentWeather = function(icon, temp, wind, humidity, uvi) {
 
-    var iconUrl = " http://openweathermap.org/img/wn/" + icon + "@2x.png"
+    var iconUrl = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
 
     $(".current-city").append("<img class='icon-img' src=" + iconUrl + ">");
 
@@ -83,19 +83,36 @@ var displayCurrentWeather = function(icon, temp, wind, humidity, uvi) {
     $("#wind").text("Wind: " + wind + " MPH");
     $("#humidity").text("Humidity: " + humidity + " %");
     $("#uv").text("UV Index: " + uvi);
+
+    if(uvi < 3) {
+        $("#uv").addClass("green");
+    } else if(uvi>=3 && uvi<=5) {
+        $("#uv").addClass("yellow");
+    } else if(uvi>=6 && uvi<=7) {
+        $("#uv").addClass("orange");
+    } else if(uvi>=8 && uvi<=10) {
+        $("#uv").addClass("red");
+    } else if(uvi>= 11) {
+        $("#uv").addClass("dark-red");
+    }
 };
 
 
-// var displayFiveDay = function(daily) {
+var displayFiveDay = function(dailyStats) {
 
-//     for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 5; i++) {
 
-//         getNewDate();
-//         $(".day" + i).append()
-//     }
+        var fiveIcon = "http://openweathermap.org/img/wn/" + dailyStats[i].weather[0].icon + "@2x.png"
+        $(".day" + i).find(".weather-icon" + i).append("<img class='iconFive' src=" + fiveIcon + ">");
+
+        $(".day" + i).find(".w-stats").append("<li>High Temp: " + dailyStats[i].temp.max + " °F</li>");
+        $(".day" + i).find(".w-stats").append("<li>Low Temp: " + dailyStats[i].temp.min + " °F</li>");
+        $(".day" + i).find(".w-stats").append("<li>Wind: " + dailyStats[i].wind_speed + " MPH</li>");
+        $(".day" + i).find(".w-stats").append("<li>Humidity: " + dailyStats[i].humidity + " %</li>");
+    }
 
 
-// }
+};
 
 var getNewDate = function () {
     for (var d = 1; d < 6; d++) {
@@ -105,14 +122,8 @@ var getNewDate = function () {
         
         var newDate = date.toLocaleDateString();
         
-        $(".date" + d).text(newDate);
-
-        //document.getElementById("demo" + d).innerHTML = newDate;
-    }
-    
+        $(".head" + d).text(newDate);
+    }  
 };
 
 $(".city-form").on("submit", formSubmitHandler); 
-
-
-
