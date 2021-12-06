@@ -1,6 +1,6 @@
 var currentDate = (moment().format("M/D/YYYY"));
 
-var formSubmitHandler = function(event) {
+var formSubmitHandler = function (event) {
     event.preventDefault();
 
     var city = $("#city").val().trim();
@@ -10,46 +10,112 @@ var formSubmitHandler = function(event) {
     console.log(state);
     console.log(country);
 
-    if(city && state && country) {
-
-        getCityCoords(city, state, country);
-
-        //clear old content
-        $("#city").val("");
-        $("#state").val("");
-        $("#country").val("");
+    if (city && state && country) {
+        getCoords(city, state, country);
+    } else if (city && !state && !country) {
+        getCoordsCity(city);
+    } else if (city && !state && country) {
+        getCoordsCityCountry(city, country);
+    } else if (city && state && !country) {
+        getCoordsCityState(city, state); 
+    } else {
+        alert("please enter a valid city");
     } 
-    else {
-        alert("please enter a valid location");
-    }
+
+    //clear old content
+    $("#city").val("");
+    $("#state").val("");
+    $("#country").val("");
 };
-  
-var getCityCoords = function(cityName, stateName, countryName) {
+
+var getCoords = function (cityName, stateName, countryName) {
     var apiGeoUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "," + stateName + "," + countryName + "&limit=1&appid=d7c51260421f59d205477457b5c74ad2"
 
-    fetch(apiGeoUrl).then(function(response) {
-        if(response.ok) {
+    fetch(apiGeoUrl).then(function (response) {
+        if (response.ok) {
             console.log(response);
-            response.json().then(function(data) {
+            response.json().then(function (data) {
                 console.log(data);
                 console.log(data[0].name);
+                console.log(data[0].state);
+                console.log(data[0].country);
                 console.log(data[0].lat);
                 console.log(data[0].lon);
-                getCityWeather(data[0].name, data[0].state, data[0].lat, data[0].lon);
+                getCityWeather(data[0].name, data[0].state, data[0].country, data[0].lat, data[0].lon);
             })
         }
     })
 }
 
-var getCityWeather = function(city, state, lat, lon) {
+var getCoordsCity = function (cityName) {
+    var apiGeoUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=d7c51260421f59d205477457b5c74ad2"
 
-    $(".current-city").text(city + ", " + state + " " + "(" + currentDate + ")");
+    fetch(apiGeoUrl).then(function (response) {
+        if (response.ok) {
+            console.log(response);
+            response.json().then(function (data) {
+                console.log(data);
+                console.log(data[0].name);
+                console.log(data[0].state);
+                console.log(data[0].country);
+                console.log(data[0].lat);
+                console.log(data[0].lon);
+                getCityWeather(data[0].name, data[0].state, data[0].country, data[0].lat, data[0].lon);
+            })
+        }
+    })
+};
+
+var getCoordsCityState = function(cityName, stateName) {
+    var apiGeoUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "," + "," + stateName + "&limit=1&appid=d7c51260421f59d205477457b5c74ad2"
+
+    fetch(apiGeoUrl).then(function (response) {
+        if (response.ok) {
+            console.log(response);
+            response.json().then(function (data) {
+                console.log(data);
+                console.log(data[0].name);
+                console.log(data[0].state);
+                console.log(data[0].country);
+                console.log(data[0].lat);
+                console.log(data[0].lon);
+                getCityWeather(data[0].name, data[0].state, data[0].country, data[0].lat, data[0].lon);
+            })
+        }
+    })
+}
+
+var getCoordsCityCountry = function (cityName, countryName) {
+    var apiGeoUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "," + countryName + "&limit=1&appid=d7c51260421f59d205477457b5c74ad2"
+
+    fetch(apiGeoUrl).then(function (response) {
+        if (response.ok) {
+            console.log(response);
+            response.json().then(function (data) {
+                console.log(data);
+                console.log(data[0].name);
+                console.log(data[0].state);
+                console.log(data[0].country);
+                console.log(data[0].lat);
+                console.log(data[0].lon);
+                getCityWeather(data[0].name, data[0].state, data[0].country, data[0].lat, data[0].lon);
+            })
+        }
+    })
+}
+
+var getCityWeather = function (city, state, country, lat, lon) {
+
+    if(country==="US") {
+        $(".current-city").text(city + ", " + state + " " + "(" + currentDate + ")");
+    } else
+        $(".current-city").text(city + ", " + country + " " + "(" + currentDate + ")");
 
     var apiWeatherUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=d7c51260421f59d205477457b5c74ad2";
 
-    fetch(apiWeatherUrl).then(function(response){
-        if(response.ok) {
-            response.json().then(function(data) {
+    fetch(apiWeatherUrl).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
                 console.log(data);
                 var icon = data.current.weather[0].icon;
                 var temp = data.current.temp;
@@ -73,7 +139,7 @@ var getCityWeather = function(city, state, lat, lon) {
     })
 }
 
-var displayCurrentWeather = function(icon, temp, daily, wind, humidity, uvi) {
+var displayCurrentWeather = function (icon, temp, daily, wind, humidity, uvi) {
 
     var iconUrl = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
 
@@ -83,24 +149,23 @@ var displayCurrentWeather = function(icon, temp, daily, wind, humidity, uvi) {
     $("#temp-high").text("High: " + daily[0].temp.max + "°F");
     $("#temp-low").text("Low: " + daily[0].temp.min + "°F");
     $("#wind").text("Wind: " + wind + " MPH");
-    $("#humidity").text("Humidity: " + humidity + " %");
+    $("#humidity").text("Humidity: " + humidity + "%");
     $("#uv").text("UV Index: " + uvi);
 
-    if(uvi < 3) {
+    if (uvi < 3) {
         $("#uv").addClass("green");
-    } else if(uvi>=3 && uvi<=5) {
+    } else if (uvi >= 3 && uvi <= 5) {
         $("#uv").addClass("yellow");
-    } else if(uvi>=6 && uvi<=7) {
+    } else if (uvi >= 6 && uvi <= 7) {
         $("#uv").addClass("orange");
-    } else if(uvi>=8 && uvi<=10) {
+    } else if (uvi >= 8 && uvi <= 10) {
         $("#uv").addClass("red");
-    } else if(uvi>= 11) {
+    } else if (uvi >= 11) {
         $("#uv").addClass("dark-red");
     }
 };
 
-
-var displayFiveDay = function(dailyStats) {
+var displayFiveDay = function (dailyStats) {
 
     for (var i = 1; i < 6; i++) {
 
@@ -110,10 +175,8 @@ var displayFiveDay = function(dailyStats) {
         $(".day" + i).find(".list1").text("High Temp: " + dailyStats[i].temp.max + " °F");
         $(".day" + i).find(".list2").text("Low Temp: " + dailyStats[i].temp.min + " °F");
         $(".day" + i).find(".list3").text("Wind: " + dailyStats[i].wind_speed + " MPH");
-        $(".day" + i).find(".list4").text("Humidity: " + dailyStats[i].humidity + " %");
+        $(".day" + i).find(".list4").text("Humidity: " + dailyStats[i].humidity + "%");
     }
-
-
 };
 
 var getNewDate = function () {
@@ -121,11 +184,11 @@ var getNewDate = function () {
 
         var date = new Date();
         date.setDate(date.getDate() + d);
-        
+
         var newDate = date.toLocaleDateString();
-        
+
         $(".head" + d).text(newDate);
-    }  
+    }
 };
 
-$(".city-form").on("submit", formSubmitHandler); 
+$(".city-form").on("submit", formSubmitHandler);
