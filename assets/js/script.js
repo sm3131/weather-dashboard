@@ -134,6 +134,8 @@ var getCityWeather = function (city, state, country, lat, lon) {
 
                 getNewDate();
                 displayFiveDay(daily);
+
+                storeSearches(city, state, country);
             })
         }
     })
@@ -190,5 +192,56 @@ var getNewDate = function () {
         $(".head" + d).text(newDate);
     }
 };
+
+var storeSearches = function(city, state, country) {
+    debugger;
+    if(state) {
+        var cityObj = {
+            "city": city,
+            "state": state,
+            "country": country
+        }
+    } else {
+        var cityObj = {
+            "city": city,
+            "country": country
+        }
+    }
+
+    var cityArr = getStoredCities();
+
+    var cityMatch = [];
+    for(i = 1; 1 < 9; i++) {
+        var cityItem = $(".item" + i).text()
+        cityMatch.push(cityItem);
+    }
+    var cityMatch = [];
+    cityMatch.push($(".history-cities").children().text())
+
+    if($(city).matches(".history-cities").text(city)) {
+        return false;
+    } else {
+        $(cityArr).unshift(cityObj);
+        localStorage.setItem("storedCities", JSON.stringify(cityArr));
+        displayCityHistory(city);
+    }
+}
+
+var getStoredCities = function() {
+
+    var getCities = localStorage.getItem("storedCities");
+        
+        if(!getCities) {
+            return getCities = [];
+        } else {
+            getCities = JSON.parse(getCities);
+            return getCities
+        }
+    }
+
+
+var displayCityHistory = function(city) {
+    $(".history-cities").append("<li class='history-list'>" + city + "</li>");
+}
 
 $(".city-form").on("submit", formSubmitHandler);
