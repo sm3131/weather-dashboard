@@ -194,7 +194,7 @@ var getNewDate = function () {
 };
 
 var storeSearches = function(city, state, country) {
-    debugger;
+    //debugger;
     if(state) {
         var cityObj = {
             "city": city,
@@ -208,26 +208,28 @@ var storeSearches = function(city, state, country) {
         }
     }
 
-    var cityArr = getStoredCities();
+    //var cityArr = getStoredCities();
+
+    var cityArr = [];
 
     var cityMatch = [];
-    for(i = 1; 1 < 9; i++) {
+    for(i = 0; i < 8; i++) {
         var cityItem = $(".item" + i).text()
         cityMatch.push(cityItem);
     }
-    var cityMatch = [];
-    cityMatch.push($(".history-cities").children().text())
-
-    if($(city).matches(".history-cities").text(city)) {
+    debugger;
+    if(cityMatch.includes(city)) {
         return false;
     } else {
-        $(cityArr).unshift(cityObj);
-        localStorage.setItem("storedCities", JSON.stringify(cityArr));
-        displayCityHistory(city);
+        var getCityArr = getStoredCities(cityArr);
+        cityArr = getCityArr
+        cityArr = cityArr.unshift(cityObj);
+        localStorage.setItem("storedCities", JSON.stringify(getCityArr));
     }
+    displayCityHistory(getCityArr);
 }
 
-var getStoredCities = function() {
+var getStoredCities = function(cityArr) {
 
     var getCities = localStorage.getItem("storedCities");
         
@@ -235,13 +237,31 @@ var getStoredCities = function() {
             return getCities = [];
         } else {
             getCities = JSON.parse(getCities);
-            return getCities
+            cityArr = getCities
+            return cityArr
         }
     }
 
 
-var displayCityHistory = function(city) {
-    $(".history-cities").append("<li class='history-list'>" + city + "</li>");
+var displayCityHistory = function(cityDisplay) {
+
+    for(i = 0; i < cityDisplay.length; i++) {
+        $(".item" + i).text(cityDisplay[i].city);
+    }
 }
 
 $(".city-form").on("submit", formSubmitHandler);
+
+
+// i = 1;
+// while(i < 9) {
+//     var itemCheck = $(".item" + i).text();
+//     var item8 = $(".item8").text();
+//     if(!itemCheck) {
+//         $(".item" + i).text(city);
+//     } else if (itemCheck === item8) {
+//         $(".item8").text(city)
+//     } else {
+//         break;
+//     }
+// }
