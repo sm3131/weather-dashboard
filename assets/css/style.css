@@ -51,11 +51,56 @@ hr {
     margin-top: 0px;
     padding: 6px;
     font-family:monospace;
+    color:white;
 }
 .weather-stats {
     list-style: none;
     margin-left:-29px;
     line-height: 2;
+    color: royalblue;
+    font-weight:bold;
+    font-family:monospace;
+    font-size:18px;
+}
+
+.green {
+    background-color: green;
+    border: 2px solid green;
+    border-radius:5px;
+    width:fit-content;
+    padding: 0px 2px;
+}
+
+.yellow {
+    background-color: yellow;
+    border: 2px solid yellow;
+    border-radius:5px;
+    width:fit-content;
+    padding: 0px 2px;
+}
+
+.orange {
+    background-color: orange;
+    border: 2px solid orange;
+    border-radius:5px;
+    width:fit-content;
+    padding: 0px 2px;
+}
+
+.red {
+    background-color: red;
+    border: 2px solid red;
+    border-radius:5px;
+    width:fit-content;
+    padding: 0px 2px;
+}
+
+.dark-red {
+    background-color: darkred;
+    border: 2px solid darkred;
+    border-radius:5px;
+    width:fit-content;
+    padding: 0px 2px;
 }
 
 .five-cards {
@@ -70,6 +115,7 @@ hr {
     border-radius: 5px;
     max-width:97%;
     color:white;
+    font-family:monospace;
 }
 
 .icon-img {
@@ -79,9 +125,11 @@ hr {
 .five-day-cards h4 {
     color:white;
     margin-top:5px;
+    font-family:monospace;
+    font-size:27px;
 }
 
-.iconFive {
+.icon-five {
     height: 50px;
 }
 
@@ -98,6 +146,7 @@ hr {
 
 .w-stats {
     color:cyan;
+    font-family:monospace;
     font-size: 18px;
 
 }

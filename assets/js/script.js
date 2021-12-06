@@ -64,7 +64,7 @@ var getCityWeather = function(city, state, lat, lon) {
                 console.log(humidity);
                 console.log(uvi);
 
-                displayCurrentWeather(icon, temp, wind, humidity, uvi)
+                displayCurrentWeather(icon, temp, daily, wind, humidity, uvi)
 
                 getNewDate();
                 displayFiveDay(daily);
@@ -73,13 +73,15 @@ var getCityWeather = function(city, state, lat, lon) {
     })
 }
 
-var displayCurrentWeather = function(icon, temp, wind, humidity, uvi) {
+var displayCurrentWeather = function(icon, temp, daily, wind, humidity, uvi) {
 
     var iconUrl = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
 
     $(".current-city").append("<img class='icon-img' src=" + iconUrl + ">");
 
     $("#temp").text("Temp: " + temp + "°F");
+    $("#temp-high").text("High: " + daily[0].temp.max + "°F");
+    $("#temp-low").text("Low: " + daily[0].temp.min + "°F");
     $("#wind").text("Wind: " + wind + " MPH");
     $("#humidity").text("Humidity: " + humidity + " %");
     $("#uv").text("UV Index: " + uvi);
@@ -100,15 +102,15 @@ var displayCurrentWeather = function(icon, temp, wind, humidity, uvi) {
 
 var displayFiveDay = function(dailyStats) {
 
-    for (var i = 0; i < 5; i++) {
+    for (var i = 1; i < 6; i++) {
 
         var fiveIcon = "http://openweathermap.org/img/wn/" + dailyStats[i].weather[0].icon + "@2x.png"
-        $(".day" + i).find(".weather-icon" + i).append("<img class='iconFive' src=" + fiveIcon + ">");
+        $(".day" + i).find(".weather-icon" + i).attr("src", fiveIcon);
 
-        $(".day" + i).find(".w-stats").append("<li>High Temp: " + dailyStats[i].temp.max + " °F</li>");
-        $(".day" + i).find(".w-stats").append("<li>Low Temp: " + dailyStats[i].temp.min + " °F</li>");
-        $(".day" + i).find(".w-stats").append("<li>Wind: " + dailyStats[i].wind_speed + " MPH</li>");
-        $(".day" + i).find(".w-stats").append("<li>Humidity: " + dailyStats[i].humidity + " %</li>");
+        $(".day" + i).find(".list1").text("High Temp: " + dailyStats[i].temp.max + " °F");
+        $(".day" + i).find(".list2").text("Low Temp: " + dailyStats[i].temp.min + " °F");
+        $(".day" + i).find(".list3").text("Wind: " + dailyStats[i].wind_speed + " MPH");
+        $(".day" + i).find(".list4").text("Humidity: " + dailyStats[i].humidity + " %");
     }
 
 
