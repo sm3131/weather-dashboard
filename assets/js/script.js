@@ -1,7 +1,7 @@
 var currentDate = (moment().format("M/D/YYYY"));
 
 var formSubmitHandler = function (event) {
-    debugger;
+    
     event.preventDefault();
 
     var city = $("#city").val().trim();
@@ -195,7 +195,7 @@ var getNewDate = function () {
 };
 
 var storeSearches = function(city, state, country) {
-    //debugger;
+    
     if(state) {
         var cityObj = {
             "city": city,
@@ -216,7 +216,7 @@ var storeSearches = function(city, state, country) {
         var cityItem = $(".item" + i).text()
         cityMatch.push(cityItem);
     }
-    //debugger;
+    
     if(cityMatch.includes(city)) {
         return false;
     } else {
@@ -250,7 +250,7 @@ var displayCityHistory = function(cityDisplay) {
 }
 
 var displaySearchHistory = function(event) {
-    debugger;
+    
     var cityTarget = event.target
 
     if(cityTarget.matches(".city-item")) {
@@ -278,7 +278,7 @@ var displaySearchHistory = function(event) {
 }
 
 var searchHistoryCity = function () {
-    debugger;
+    
 
     var city = $("#city").val().trim();
     var state = $("#state").val().trim();
@@ -306,7 +306,6 @@ var searchHistoryCity = function () {
 };
 
 window.onload = function() {
-    //debugger;
    var storedCitiesArr = getStoredCities();
 
     displayCityHistory(storedCitiesArr);
@@ -318,8 +317,7 @@ $(".city-form").on("submit", formSubmitHandler);
 
 
 //to do
-// on page reload display locally stored cities on screen reuse some functions from save process
-// create function to display weather for city search history cities on click function
+// fix city history to store multiple cities in different states/countries
 // when hovering over list items in search history turn cursor into pointer
-//style searched cities
+// style searched cities
 // change temps to round with math floor function

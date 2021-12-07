@@ -28,6 +28,22 @@
     font-size: 1.2rem;
 }
 
+.history-cities {
+    list-style:none;
+}
+
+.city-item {
+    line-height: 2;
+    background-image: linear-gradient(8deg, blue, skyblue,blueviolet);
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    font-family: monospace;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 80%;
+}
+
 hr {
     border-top: 3px solid rgba(0,0,0,.5)
 }
