@@ -1,6 +1,7 @@
 var currentDate = (moment().format("M/D/YYYY"));
 
 var formSubmitHandler = function (event) {
+    debugger;
     event.preventDefault();
 
     var city = $("#city").val().trim();
@@ -208,8 +209,6 @@ var storeSearches = function(city, state, country) {
         }
     }
 
-    //var cityArr = getStoredCities();
-
     var cityArr = [];
 
     var cityMatch = [];
@@ -217,7 +216,7 @@ var storeSearches = function(city, state, country) {
         var cityItem = $(".item" + i).text()
         cityMatch.push(cityItem);
     }
-    debugger;
+    //debugger;
     if(cityMatch.includes(city)) {
         return false;
     } else {
@@ -250,18 +249,77 @@ var displayCityHistory = function(cityDisplay) {
     }
 }
 
+var displaySearchHistory = function(event) {
+    debugger;
+    var cityTarget = event.target
+
+    if(cityTarget.matches(".city-item")) {
+        var cityItemText = $(cityTarget).text();
+    }
+    
+    var storedArrMatch = getStoredCities(); 
+
+    for(i = 0; i < storedArrMatch.length; i++) {
+        
+        var storedCity = storedArrMatch[i].city
+        var storedState = storedArrMatch[i].state
+        var storedCountry = storedArrMatch[i].country
+
+        if(storedCity === cityItemText && storedState) {
+            $("#city").val(storedCity);
+            $("#state").val(storedState);
+            $("#country").val(storedCountry);
+        } else if (storedCity === cityItemText && !storedState) {
+            $("#city").val(storedCity);
+            $("#country").val(storedCountry);
+        }
+    }
+    searchHistoryCity();
+}
+
+var searchHistoryCity = function () {
+    debugger;
+
+    var city = $("#city").val().trim();
+    var state = $("#state").val().trim();
+    var country = $("#country").val().trim();
+    console.log(city);
+    console.log(state);
+    console.log(country);
+
+    if (city && state && country) {
+        getCoords(city, state, country);
+    } else if (city && !state && !country) {
+        getCoordsCity(city);
+    } else if (city && !state && country) {
+        getCoordsCityCountry(city, country);
+    } else if (city && state && !country) {
+        getCoordsCityState(city, state); 
+    } else {
+        alert("please enter a valid city");
+    } 
+
+    //clear old content
+    $("#city").val("");
+    $("#state").val("");
+    $("#country").val("");
+};
+
+window.onload = function() {
+    //debugger;
+   var storedCitiesArr = getStoredCities();
+
+    displayCityHistory(storedCitiesArr);
+}
+
+$(".history-cities").on("click", displaySearchHistory);
+
 $(".city-form").on("submit", formSubmitHandler);
 
 
-// i = 1;
-// while(i < 9) {
-//     var itemCheck = $(".item" + i).text();
-//     var item8 = $(".item8").text();
-//     if(!itemCheck) {
-//         $(".item" + i).text(city);
-//     } else if (itemCheck === item8) {
-//         $(".item8").text(city)
-//     } else {
-//         break;
-//     }
-// }
+//to do
+// on page reload display locally stored cities on screen reuse some functions from save process
+// create function to display weather for city search history cities on click function
+// when hovering over list items in search history turn cursor into pointer
+//style searched cities
+// change temps to round with math floor function
