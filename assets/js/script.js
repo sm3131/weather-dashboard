@@ -119,11 +119,11 @@ var getCityWeather = function (city, state, country, lat, lon) {
             response.json().then(function (data) {
                 console.log(data);
                 var icon = data.current.weather[0].icon;
-                var temp = data.current.temp;
-                var wind = data.current.wind_speed
-                var humidity = data.current.humidity
-                var uvi = data.current.uvi
-                var daily = data.daily
+                var temp = Math.floor(data.current.temp);
+                var wind = Math.floor(data.current.wind_speed);
+                var humidity = data.current.humidity;
+                var uvi = data.current.uvi;
+                var daily = data.daily;
 
                 console.log(icon);
                 console.log(temp);
@@ -149,8 +149,8 @@ var displayCurrentWeather = function (icon, temp, daily, wind, humidity, uvi) {
     $(".current-city").append("<img class='icon-img' src=" + iconUrl + ">");
 
     $("#temp").text("Temp: " + temp + "°F");
-    $("#temp-high").text("High: " + daily[0].temp.max + "°F");
-    $("#temp-low").text("Low: " + daily[0].temp.min + "°F");
+    $("#temp-high").text("High: " + Math.floor(daily[0].temp.max) + "°F");
+    $("#temp-low").text("Low: " + Math.floor(daily[0].temp.min) + "°F");
     $("#wind").text("Wind: " + wind + " MPH");
     $("#humidity").text("Humidity: " + humidity + "%");
     $("#uv").text("UV Index: " + uvi);
@@ -175,9 +175,9 @@ var displayFiveDay = function (dailyStats) {
         var fiveIcon = "http://openweathermap.org/img/wn/" + dailyStats[i].weather[0].icon + "@2x.png"
         $(".day" + i).find(".weather-icon" + i).attr("src", fiveIcon);
 
-        $(".day" + i).find(".list1").text("High Temp: " + dailyStats[i].temp.max + " °F");
-        $(".day" + i).find(".list2").text("Low Temp: " + dailyStats[i].temp.min + " °F");
-        $(".day" + i).find(".list3").text("Wind: " + dailyStats[i].wind_speed + " MPH");
+        $(".day" + i).find(".list1").text("High Temp: " + Math.floor(dailyStats[i].temp.max) + "°F");
+        $(".day" + i).find(".list2").text("Low Temp: " + Math.floor(dailyStats[i].temp.min) + "°F");
+        $(".day" + i).find(".list3").text("Wind: " + Math.floor(dailyStats[i].wind_speed) + " MPH");
         $(".day" + i).find(".list4").text("Humidity: " + dailyStats[i].humidity + "%");
     }
 };
@@ -328,7 +328,6 @@ $(".city-form").on("submit", formSubmitHandler);
 
 
 //to do
-// fix city history to store multiple cities in different states/countries
 // when hovering over list items in search history turn cursor into pointer
 // style searched cities
-// change temps to round with math floor function
+
