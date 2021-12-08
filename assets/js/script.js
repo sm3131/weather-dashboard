@@ -219,7 +219,9 @@ var storeSearches = function(city, state, country) {
     
     if(cityMatch.includes(city + ", " + state)) {
         return false;
-    } else {
+    } else if (cityMatch.includes(city + ", " + country)){
+        return false;
+    }   else {
         var getCityArr = getStoredCities(cityArr);
         cityArr = getCityArr
         cityArr = cityArr.unshift(cityObj);
