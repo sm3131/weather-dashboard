@@ -1,5 +1,6 @@
 var currentDate = (moment().format("M/D/YYYY"));
 
+// initial function to start the process of retrieving the weather from the api based on city search
 var formSubmitHandler = function (event) {
     
     event.preventDefault();
@@ -29,6 +30,7 @@ var formSubmitHandler = function (event) {
     $("#country").val("");
 };
 
+// get lat and long based on city, state, country search
 var getCoords = function (cityName, stateName, countryName) {
     var apiGeoUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "," + stateName + "," + countryName + "&limit=1&appid=d7c51260421f59d205477457b5c74ad2"
 
@@ -48,6 +50,7 @@ var getCoords = function (cityName, stateName, countryName) {
     })
 }
 
+// get lat and long based on city search
 var getCoordsCity = function (cityName) {
     var apiGeoUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=d7c51260421f59d205477457b5c74ad2"
 
@@ -67,6 +70,7 @@ var getCoordsCity = function (cityName) {
     })
 };
 
+// get lat and long based on city and state search
 var getCoordsCityState = function(cityName, stateName) {
     var apiGeoUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "," + stateName + ",US&limit=1&appid=d7c51260421f59d205477457b5c74ad2"
 
@@ -86,6 +90,7 @@ var getCoordsCityState = function(cityName, stateName) {
     })
 }
 
+// get lat and long based on city and country search
 var getCoordsCityCountry = function (cityName, countryName) {
     var apiGeoUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "," + countryName + "&limit=1&appid=d7c51260421f59d205477457b5c74ad2"
 
@@ -105,6 +110,7 @@ var getCoordsCityCountry = function (cityName, countryName) {
     })
 }
 
+// fetch weather from api
 var getCityWeather = function (city, state, country, lat, lon) {
 
     if(country==="US") {
@@ -142,6 +148,7 @@ var getCityWeather = function (city, state, country, lat, lon) {
     })
 }
 
+// display current weather stats for city search
 var displayCurrentWeather = function (icon, temp, daily, wind, humidity, uvi) {
 
     var iconUrl = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
@@ -168,6 +175,7 @@ var displayCurrentWeather = function (icon, temp, daily, wind, humidity, uvi) {
     }
 };
 
+// display five day forecast weather stats for city search
 var displayFiveDay = function (dailyStats) {
 
     for (var i = 1; i < 6; i++) {
@@ -182,6 +190,7 @@ var displayFiveDay = function (dailyStats) {
     }
 };
 
+// display five day forecast dates
 var getNewDate = function () {
     for (var d = 1; d < 6; d++) {
 
@@ -194,6 +203,7 @@ var getNewDate = function () {
     }
 };
 
+// store city searches in local storage
 var storeSearches = function(city, state, country) {
     
     if(state) {
@@ -230,6 +240,7 @@ var storeSearches = function(city, state, country) {
     displayCityHistory(getCityArr);
 }
 
+// get cities stored in local storage
 var getStoredCities = function(cityArr) {
 
     var getCities = localStorage.getItem("storedCities");
@@ -243,7 +254,7 @@ var getStoredCities = function(cityArr) {
         }
     }
 
-
+// display city search history on page
 var displayCityHistory = function(cityDisplay) {
 
     for(i = 0; i < cityDisplay.length; i++) {
@@ -258,6 +269,7 @@ var displayCityHistory = function(cityDisplay) {
     }
 }
 
+// display weather stats when click on previously searched city
 var displaySearchHistory = function(event) {
     var cityTarget = event.target
 
@@ -292,7 +304,6 @@ var displaySearchHistory = function(event) {
 
 var searchHistoryCity = function () {
     
-
     var city = $("#city").val().trim();
     var state = $("#state").val().trim();
     var country = $("#country").val().trim();
@@ -318,6 +329,7 @@ var searchHistoryCity = function () {
     $("#country").val("");
 };
 
+// on page refresh display city search history based on local storage
 window.onload = function() {
    var storedCitiesArr = getStoredCities();
 
@@ -328,8 +340,4 @@ $(".history-cities").on("click", displaySearchHistory);
 
 $(".city-form").on("submit", formSubmitHandler);
 
-
-//to do
-// when hovering over list items in search history turn cursor into pointer
-// style searched cities
 

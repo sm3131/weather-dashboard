@@ -77,6 +77,10 @@ hr {
     font-size:18px;
 }
 
+#uv {
+    color:white;
+}
+
 .green {
     background-color: green;
     border: 2px solid green;
@@ -151,7 +155,7 @@ hr {
     margin: 26px;
     padding-left:26px;
     max-width:93.2%;
-    background-image:linear-gradient(15deg, white, blue);
+    background-image:linear-gradient(225deg, white, blue);
     color:navy;
     border: 2px solid skyblue;
     border-radius:5px;
