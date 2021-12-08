@@ -68,7 +68,7 @@ var getCoordsCity = function (cityName) {
 };
 
 var getCoordsCityState = function(cityName, stateName) {
-    var apiGeoUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "," + "," + stateName + "&limit=1&appid=d7c51260421f59d205477457b5c74ad2"
+    var apiGeoUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "," + stateName + ",US&limit=1&appid=d7c51260421f59d205477457b5c74ad2"
 
     fetch(apiGeoUrl).then(function (response) {
         if (response.ok) {
@@ -217,7 +217,7 @@ var storeSearches = function(city, state, country) {
         cityMatch.push(cityItem);
     }
     
-    if(cityMatch.includes(city)) {
+    if(cityMatch.includes(city + ", " + state)) {
         return false;
     } else {
         var getCityArr = getStoredCities(cityArr);
@@ -245,16 +245,27 @@ var getStoredCities = function(cityArr) {
 var displayCityHistory = function(cityDisplay) {
 
     for(i = 0; i < cityDisplay.length; i++) {
-        $(".item" + i).text(cityDisplay[i].city);
+        var cityDis = cityDisplay[i].city;
+        var stateDis = cityDisplay[i].state;
+        var countryDis = cityDisplay[i].country;
+        if(stateDis) {
+            $(".item" + i).text(cityDis + ", " + stateDis);
+        } else {
+            $(".item" + i).text(cityDis + ", " + countryDis);
+        }
     }
 }
 
 var displaySearchHistory = function(event) {
-    
     var cityTarget = event.target
 
     if(cityTarget.matches(".city-item")) {
-        var cityItemText = $(cityTarget).text();
+        var cityItem = $(cityTarget).text();
+        cityItem = cityItem.split(",", 1);
+        var cityItemText = cityItem[0];
+        var stateItem = $(cityTarget).text();
+        stateItem = stateItem.split(",", 2);
+        var stateItemText = stateItem[1].trim();
     }
     
     var storedArrMatch = getStoredCities(); 
@@ -265,7 +276,7 @@ var displaySearchHistory = function(event) {
         var storedState = storedArrMatch[i].state
         var storedCountry = storedArrMatch[i].country
 
-        if(storedCity === cityItemText && storedState) {
+        if(storedCity === cityItemText && storedState === stateItemText) {
             $("#city").val(storedCity);
             $("#state").val(storedState);
             $("#country").val(storedCountry);
