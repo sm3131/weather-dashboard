@@ -118,7 +118,7 @@ var getCityWeather = function (city, state, country, lat, lon) {
     } else
         $(".current-city").text(city + ", " + country + " " + "(" + currentDate + ")");
 
-    var apiWeatherUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=d7c51260421f59d205477457b5c74ad2";
+    var apiWeatherUrl = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=d7c51260421f59d205477457b5c74ad2";
 
     fetch(apiWeatherUrl).then(function (response) {
         if (response.ok) {
