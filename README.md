@@ -18,6 +18,7 @@ The weather dashboard app was created to provide users a convenient way to searc
 - Bootstrap
 - Javascript
 - JQuery
+- Moment.js
 
 # Code Access
 

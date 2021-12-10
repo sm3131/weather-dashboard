@@ -8,9 +8,6 @@ var formSubmitHandler = function (event) {
     var city = $("#city").val().trim();
     var state = $("#state").val().trim();
     var country = $("#country").val().trim();
-    console.log(city);
-    console.log(state);
-    console.log(country);
 
     if (city && state && country) {
         getCoords(city, state, country);
@@ -36,14 +33,7 @@ var getCoords = function (cityName, stateName, countryName) {
 
     fetch(apiGeoUrl).then(function (response) {
         if (response.ok) {
-            console.log(response);
             response.json().then(function (data) {
-                console.log(data);
-                console.log(data[0].name);
-                console.log(data[0].state);
-                console.log(data[0].country);
-                console.log(data[0].lat);
-                console.log(data[0].lon);
                 getCityWeather(data[0].name, data[0].state, data[0].country, data[0].lat, data[0].lon);
             })
         }
@@ -56,14 +46,7 @@ var getCoordsCity = function (cityName) {
 
     fetch(apiGeoUrl).then(function (response) {
         if (response.ok) {
-            console.log(response);
             response.json().then(function (data) {
-                console.log(data);
-                console.log(data[0].name);
-                console.log(data[0].state);
-                console.log(data[0].country);
-                console.log(data[0].lat);
-                console.log(data[0].lon);
                 getCityWeather(data[0].name, data[0].state, data[0].country, data[0].lat, data[0].lon);
             })
         }
@@ -76,14 +59,7 @@ var getCoordsCityState = function(cityName, stateName) {
 
     fetch(apiGeoUrl).then(function (response) {
         if (response.ok) {
-            console.log(response);
             response.json().then(function (data) {
-                console.log(data);
-                console.log(data[0].name);
-                console.log(data[0].state);
-                console.log(data[0].country);
-                console.log(data[0].lat);
-                console.log(data[0].lon);
                 getCityWeather(data[0].name, data[0].state, data[0].country, data[0].lat, data[0].lon);
             })
         }
@@ -96,14 +72,7 @@ var getCoordsCityCountry = function (cityName, countryName) {
 
     fetch(apiGeoUrl).then(function (response) {
         if (response.ok) {
-            console.log(response);
             response.json().then(function (data) {
-                console.log(data);
-                console.log(data[0].name);
-                console.log(data[0].state);
-                console.log(data[0].country);
-                console.log(data[0].lat);
-                console.log(data[0].lon);
                 getCityWeather(data[0].name, data[0].state, data[0].country, data[0].lat, data[0].lon);
             })
         }
@@ -123,19 +92,12 @@ var getCityWeather = function (city, state, country, lat, lon) {
     fetch(apiWeatherUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data);
                 var icon = data.current.weather[0].icon;
                 var temp = Math.floor(data.current.temp);
                 var wind = Math.floor(data.current.wind_speed);
                 var humidity = data.current.humidity;
                 var uvi = data.current.uvi;
                 var daily = data.daily;
-
-                console.log(icon);
-                console.log(temp);
-                console.log(wind);
-                console.log(humidity);
-                console.log(uvi);
 
                 displayCurrentWeather(icon, temp, daily, wind, humidity, uvi)
 
@@ -307,9 +269,6 @@ var searchHistoryCity = function () {
     var city = $("#city").val().trim();
     var state = $("#state").val().trim();
     var country = $("#country").val().trim();
-    console.log(city);
-    console.log(state);
-    console.log(country);
 
     if (city && state && country) {
         getCoords(city, state, country);
@@ -336,8 +295,10 @@ window.onload = function() {
     displayCityHistory(storedCitiesArr);
 }
 
+// call to display search history cities on click
 $(".history-cities").on("click", displaySearchHistory);
 
+// initial call to start fetching weather data after city is searched
 $(".city-form").on("submit", formSubmitHandler);
 
 
