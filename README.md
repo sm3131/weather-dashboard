@@ -26,12 +26,12 @@ If you would like to access the code for this project, please visit this [GitHub
 
 # Preview
 
-Below is a screenshot of the Weather Dashboard Application
-![Weather Dashboard](assets/images/
+Below is a screenshot of the Weather Dashboard Application:
+![Weather Dashboard](assets/images/weather-dash.png)
 
 # Functionality
 
-This weather app is likely similar to other weather apps you have encountered online or on mobile devices. This app has various functions and provides a detailed overview of current and future weather stats.
+This weather app has some similarities to other weather apps you may have encountered online or on mobile devices. But this app provides sleeker design and attempts to fulfill many weather related needs of its users. The app has a variety of functions and provides a detailed overview of current and future weather data.
 The app's functionality and features are described in further detail below:
 - Once you have opened the application you are presented with several empty text fields that you can input information
 - The first text field requests the city you are interested in searching
@@ -46,7 +46,7 @@ The app's functionality and features are described in further detail below:
 - There are also icons provided next to or underneath the date for that day to indicate the weather conditions (i.e. sunny, cloudy, rain, snow, etc.)
 - The app also stores all recent searches up to 8 at a time on the page under the search input fields
 - Once you exceed 8 searches your oldest search will disappear and be replaced by the most recent search
-- You can also click on any of the search history cities and it will again display that cities weather data on the screen
+- You can also click on any of the search history cities and it will again display that city's weather data on the screen
 - Lastly if you close or refresh the page any of your stored search history cities will persist and reappear when the page reopens or refreshes
 
 # Weather Dashboard Link
@@ -56,4 +56,4 @@ https://sm3131.github.io/weather-dashboard/
 
 # Credit / Contribution
 
-No starter code was provided for this project, meaning all of the code was written and created by myself from scratch to develop this app. The design and formatting was accomplished by using HTML, CSS, and bootstrap, while the functionality and interactivity was created by Javascript and JQuery. This app requests data from a third-party API called OpenWeather Map, and more specifically it is the one call API within that website. To access the api follow this [OpenWeather](https://openweathermap.org/api/one-call-api#example) link.
+No starter code was provided for this project, meaning all of the code was written and created by myself from scratch in order to develop this app. The design and formatting was accomplished by using HTML, CSS, and bootstrap, while the functionality and interactivity was created by Javascript and JQuery. This app requests data from a third-party API called OpenWeather Map, and more specifically it is the one call API within that website. To access the api follow this [OpenWeather](https://openweathermap.org/api/one-call-api#example) link.
