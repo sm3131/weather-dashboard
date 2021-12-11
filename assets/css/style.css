@@ -67,6 +67,7 @@ hr {
     font-family:monospace;
     color:white;
 }
+
 .weather-stats {
     list-style: none;
     margin-left:-29px;
@@ -166,7 +167,6 @@ hr {
     color:cyan;
     font-family:monospace;
     font-size: 18px;
-
 }
 
 .w-stats {

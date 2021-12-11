@@ -2,7 +2,7 @@
 
 # Description
 
-The weather dashboard app was created to provide users a convenient way to search for weather in their cities or other cities of interest. This app allows users to search cities by their city name, city and state, city and country, or city, state, and country. After submitting their search the user is presented with both current weather data as well as the five day weather forecast. The data provided includes, current temps, high temps, low temps, wind speed, humidity, and UV index. It also provides weather icons to visually show the current and forecasted weather conditions (i.e. sunny, cloudy, rain, snow, etc.). 
+The weather dashboard app was created to provide users with a convenient way to search for weather in their cities or other cities of interest. This app allows users to search cities by their city name, city and state, city and country, or city, state, and country. After submitting their search the user is presented with both current weather data as well as the five day weather forecast. The data provided includes: current temps, high temps, low temps, wind speed, humidity, and UV index. It also provides weather icons to visually show the current and forecasted weather conditions (i.e. sunny, cloudy, rain, snow, etc.). 
 
 # Table of Contents
 - [Built With](#built-with)
@@ -26,7 +26,7 @@ If you would like to access the code for this project, please visit this [GitHub
 
 # Preview
 
-Below is a screenshot of the Weather Dashboard Application:
+Below is a screenshot of the Weather Dashboard application:
 ![Weather Dashboard](assets/images/weather-dash.png)
 
 # Functionality
@@ -39,9 +39,9 @@ The app's functionality and features are described in further detail below:
 - The third text field requests the country where the city is located
 - The search function is fairly robust and will typically return US cities without entering the state and country, but if you are looking for a city that is also found in other states you will want to specify the state in this case
 - The country field is more useful for searching international cities
-- After entering all of the input city search information, you will click the search button to then get your weather data
+- After entering all of the location search information, you will click the search button to then get your weather data
 - Once the data has been fetched and is returned, there will be two main displays on the page one for the current weather and another section for the five day forecast
-- The current weather contains the current temperature, the daily high temp, the daily low temp, the wind speed, humidity, and the UV index
+- The current weather contains the current temperature, the daily high temp, the daily low temp, wind speed, humidity, and the UV index
 - The five day forecast provides weather data for the upcoming five days which includes the high temp, low temp, wind speed, and humidity
 - There are also icons provided next to or underneath the date for that day to indicate the weather conditions (i.e. sunny, cloudy, rain, snow, etc.)
 - The app also stores all recent searches up to 8 at a time on the page under the search input fields
@@ -56,4 +56,4 @@ https://sm3131.github.io/weather-dashboard/
 
 # Credit / Contribution
 
-No starter code was provided for this project, meaning all of the code was written and created by myself from scratch in order to develop this app. The design and formatting was accomplished by using HTML, CSS, and bootstrap, while the functionality and interactivity was created by Javascript and JQuery. This app requests data from a third-party API called OpenWeather Map, and more specifically it is the one call API within that website. To access the api follow this [OpenWeather](https://openweathermap.org/api/one-call-api#example) link.
+No starter code was provided for this project, meaning all of the code was written and created by myself from scratch in order to develop this app. The design and formatting was accomplished by using HTML, CSS, and bootstrap, while the functionality and interactivity was created by Javascript and JQuery. This app requests data from a third-party API called OpenWeather Map, and more specifically it is the "one call API" within that website. To access the api follow this [OpenWeather](https://openweathermap.org/api/one-call-api#example) link.
